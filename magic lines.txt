@@ -1,0 +1,3 @@
+python neural_style.py --content_img taj.jpg --style_imgs escher_sphere.jpg --max_size 1000 --max_iterations 3 --original_colors --device gpu:5 --init_img_type adain --verbose
+
+python neural_style.py --content_img karya.jpg --style_imgs escher_sphere.jpg --max_size 1000 --max_iterations 3 --original_colors --device cpu --init_img_type adain --verbose
