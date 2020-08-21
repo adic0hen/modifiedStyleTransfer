@@ -1,0 +1,26 @@
+{% extends "merge/base.html" %}
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>gallery</title>
+    {% endblock %}
+</head>
+<body>
+    <!--        content not in use currently-->
+
+    <a class="btn btn-primary" href="/"> Go to Home Page</a>
+
+
+    {%block content%}
+    <h1>Gallery page</h1>
+
+    <h3> In this page we will show previous creations and maybe suggest photos to use when merging</h3>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "merge/base.html" %}
+    <!--        content that is not in use currently-->
+<h1>Add photo Page</h1>
+ <a class="btn btn-primary" href="/"> Go to home Page</a>
+ <a class="btn btn-primary" href="/about"> Go to about Page</a>
+
+{%block content%}
+<h1></h1>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+      <h2>Add Content photo here</h2>
+  {{ form.as_p }}
+  <button type="submit">Submit New Photo</button>
+
+    <h2>Add Style photo here</h2>
+  {{ form.as_p }}
+  <button type="submit">Submit New Photo</button>
+</form>
+{% endblock %}
