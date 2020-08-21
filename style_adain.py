@@ -3,6 +3,7 @@ from encoder_adain import Encoder
 from decoder_adain import Decoder
 from adaptive_instance_norm import AdaIN
 
+MODEL_SAVE_PATHS = "./models/style_weight_2e0.ckpt"
 
 class StyleTransferNet(object):
 
@@ -45,13 +46,10 @@ class StyleTransferNet(object):
         return generated_img
 
 
+
 def stylize_single_adain(content_img, style_img, encoder_path):
 
-    MODEL_SAVE_PATHS = [
-        'models/style_weight_2e0.ckpt',
-    ]
-
-    with tf.Graph().as_default(), tf.Session() as sess:
+    with tf.Graph().as_default(), tf.Session() as sess1:
         # build the dataflow graph
         content = tf.placeholder(
             tf.float32, shape=(1, None, None, 3), name='content')
@@ -60,16 +58,17 @@ def stylize_single_adain(content_img, style_img, encoder_path):
 
         stn = StyleTransferNet(encoder_path)
 
+        sess1.run(tf.global_variables_initializer())
+
         saver = tf.train.Saver()
-        saver.restore(sess, MODEL_SAVE_PATHS)
+        saver.restore(sess1, MODEL_SAVE_PATHS)
 
         output_image = stn.transform(content, style)
 
-        sess.run(tf.global_variables_initializer())
-
-
-        result = sess.run(output_image,
+        result = sess1.run(output_image,
                     feed_dict={content: content_img, style: style_img})
+
+        sess1.close()
 
 
     return result[0]

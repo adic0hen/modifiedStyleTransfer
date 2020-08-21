@@ -14,7 +14,7 @@ import style_adain
 '''
 
 
-def parse_args():
+def parse_args(commandLine):
     desc = "TensorFlow implementation of 'A Neural Algorithm for Artistic Style'"
     parser = argparse.ArgumentParser(description=desc)
 
@@ -213,7 +213,7 @@ def parse_args():
                         default=800,
                         help='Maximum number of optimizer iterations for each frame after the first frame. (default: %(default)s)')
 
-    args = parser.parse_args()
+    args = parser.parse_args(commandLine)
 
     # normalize weights
     args.style_layer_weights = normalize(args.style_layer_weights)
@@ -758,8 +758,8 @@ def get_content_image(content_img):
     path = os.path.join(args.content_img_dir, content_img)
     # bgr image
     img = cv2.imread(path, cv2.IMREAD_COLOR)
-    # my addition convert to rgb
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    # # my addition convert to rgb
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     check_image(img, path)
     img = img.astype(np.float32)
     h, w, d = img.shape
@@ -782,8 +782,8 @@ def get_style_images(content_img):
         path = os.path.join(args.style_imgs_dir, style_fn)
         # bgr image
         img = cv2.imread(path, cv2.IMREAD_COLOR)
-        #my addition convert to rgb
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        # #my addition convert to rgb
+        # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         check_image(img, path)
         img = img.astype(np.float32)
         img = cv2.resize(img, dsize=(cw, ch), interpolation=cv2.INTER_AREA)
@@ -917,14 +917,86 @@ def render_video():
                 print('Frame {} elapsed time: {}'.format(frame, tock - tick))
 
 
-def main():
+#######################experiments ########################################
+def originalMain(commandLine):
     global args
-    args = parse_args()
+    args = parse_args(commandLine)
     if args.video:
         render_video()
     else:
         render_single_image()
 
 
+class DefaultRequest():
+    def __init__(self,
+        contentDir = "--content_img_dir ./image_input",
+        contentData = "--content_img taj.jpg",
+        contentWeight = "--content_weight 5",
+        styleDir = "--style_imgs_dir ./styles",
+        styleData = "--style_imgs ice.jpg",
+        styleImgsWeights = "--style_imgs_weights 0.5 0.5",
+        styleweight = "--style_weight 10000",
+        device = "--device cpu",
+        verbose = "--verbose",
+        init_img_type = "--init_type content",
+        iterations = "--max_iterations 250",
+        optimizer = "--optimizer adam",
+        outfile = "--img_output_dir ./results",
+    ):
+        self.contentDir = contentDir
+        self.contentData = contentData
+        self.contentWeight = contentWeight
+        self.styleDir = styleDir
+        self.styleData = styleData
+        self.styleImgsWeights = styleImgsWeights
+        self.styleweight = styleweight
+        self.device = device
+        self.verbose = verbose
+        self.iterations = iterations
+        self.optimizer = optimizer
+        self.init_img_type = init_img_type
+        self.outfile = outfile
+
+    def getRequestArgs(self):
+        return [self.contentDir,
+                self.contentData,
+                self.contentWeight,
+                self.styleDir,
+                self.styleData,
+                self.styleweight,
+                self.styleImgsWeights,
+                self.device,
+                self.verbose,
+                self.iterations,
+                self.init_img_type,
+                self.optimizer,
+                self.outfile]
+
+
+def runInternalWithArguments(requestArgs):
+    commandLine = (" ".join(requestArgs)).split()
+    originalMain(commandLine)
+
+def run_modified():
+    request = DefaultRequest(iterations="--max_iterations 300", init_img_type="--init_img_type adain",
+                             styleData = "--style_imgs lion.jpg",
+                             contentData="--content_img whale.jpg")
+    args = request.getRequestArgs()
+    runInternalWithArguments(args)
+
+
+
+def main():
+    run_modified()
+
+# def trueMain():
+#     global args
+#     args = parse_args()
+#     if args.video:
+#         render_video()
+#     else:
+#         render_single_image()
+
 if __name__ == '__main__':
     main()
+    #trueMain()
