@@ -1,0 +1,36 @@
+{% extends "merge/base.html" %}
+
+{% load static %}
+
+
+<html>
+    <head>
+        {% block title %}
+        <title>
+            </title>
+        {% endblock %}
+    </head>
+    <body>
+<!--        links not in use currently-->
+        <h1> Home page</h1>
+        <a class="btn btn-primary" href="/add_photo"> Go to Add Photo Page</a>
+        <a class="btn btn-primary" href="/about"> Go to about Page</a>
+        <a class="btn btn-primary" href="/gallery"> Go to gallery Page</a>
+{% block content %}
+        <h1></h1>
+        <img style="width: 245px; height: 247px;"
+        alt="Image description"
+        src="{% static 'images/bubble.jpg' %}"/>
+        <img style="width: 245px; height: 247px;"
+        alt="Image description"
+        src="{% static 'images/sunglasses.png' %}"/>
+
+        <ul>
+         {% for photo in object_list %}
+            <h2>{{ photo.title }}</h2>
+            <img src="{{ photo.cover.url}}" alt="{{ photo.title }}">
+        {% endfor %}
+        </ul>
+    {% endblock %}
+    </body>
+</html>
