@@ -1,0 +1,12 @@
+{% extends "merge/base.html" %}
+{%block content%}
+<h1></h1>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+      <h2>Add Content photo here</h2>
+  {{ form.as_p }}
+  <button type="submit">Submit Content Photo</button>
+
+</form>
+{% endblock %}

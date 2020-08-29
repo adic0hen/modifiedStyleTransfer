@@ -1,7 +1,15 @@
 from django import forms
-from .models import Photo
+from .models import ContentPhoto
+from .models import StylePhoto
 
-class AddPhoto(forms.ModelForm):
+class AddContentPhotoForm(forms.ModelForm):
     class Meta:
-        model = Photo
+        model = ContentPhoto
+        fields = ['title', 'cover']
+
+
+
+class AddStylePhotoForm(forms.ModelForm):
+    class Meta:
+        model = StylePhoto
         fields = ['title', 'cover']

@@ -82,3 +82,85 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
+.approve-body{
+    width: 100%;
+
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.images-section {
+    display: flex;
+    width: 90%;
+}
+
+.images-section div{
+    padding: 4rem 2rem;
+}
+
+.images-section img{
+    width: 100%;
+}
+
+.style-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150%;
+}
+
+.style-header h2{
+}
+
+.style-header div{
+    display: flex;
+    padding: 0rem 0rem 0rem 4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.go-button {
+    font-weight: bold;
+    padding: 1rem 5rem;
+}
+
+    function toggleImage(){
+    document.querySelector('recycle.svg').classList.toggle('hidden');
+}
+
+    .hidden{
+  display: none;
+    }
+
+    .w-100{
+      width: 100%;
+    }
+
+    .mb-10{
+      margin-bottom: 10px;
+    }
+
+.style-header div load{
+    width: 20%;
+
+}
+
+.style-header div .load img{
+    animation: loading-ani 1s infinite ease-in-out;
+}
+
+
+@keyframes loading-ani {
+ from {
+   transform: rotateZ(0deg);
+ }
+ to {
+   transform: rotateZ(360deg);
+ }
+}
+
+
+
+
+

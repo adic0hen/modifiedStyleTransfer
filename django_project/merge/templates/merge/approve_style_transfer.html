@@ -1,0 +1,47 @@
+{% extends "merge/base.html" %}
+{% block content %}
+<html>
+<!--<head>-->
+<!--    <link rel="stylesheet" href="./style.css">-->
+<!--</head>-->
+<body class="approve-body">
+
+<header class="style-header">
+    <div>
+        <h2 class="approve"> Do you approve this style transfer?</h2>
+    </div>
+    <div>
+        <a class="btn btn-primary go-button" href="/apply_style_transfer" onclick="myFunction()">GO!</a>
+        <div class="load"  width="30px" height="30px">
+            <img id="myDIV" src="/media/static/svg/recycle.svg" alt="name" style="opacity: 0;" width="30px" height="30px">
+        </div>
+    </div>
+</header>
+
+<section class="images-section">
+    <div>
+        <h2>{{ last_content.title }}</h2>
+        <img src="{{ last_content.cover.url}}" alt="{{ last_content.title }}">
+    </div>
+    <div>
+        <h2>{{ last_style.title }}</h2>
+        <img src="{{ last_style.cover.url}}" alt="{{ last_style.title }}">
+    </div>
+</section>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.opacity == 0) {
+    x.style.opacity = 1;
+  } else {
+       x.style.opacity = 0;
+  }
+  return true;
+}
+</script>
+
+
+</body>
+{% endblock %}
+</html>
