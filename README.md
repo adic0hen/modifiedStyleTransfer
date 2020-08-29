@@ -1,5 +1,5 @@
 This is the readme file for modifiedstyletransfer project, welcome.  
-First, make sure you have both django and tensorflow on your environment (you may have to degrade your version of tensorflow to 1.4).  
+First, make sure you have both django and tensorflow on your environment (you may have to degrade your version of tensorflow).  
 You can use the requirements file appended to the git.
 To work with this project, you will need to download weights to work with the several networks:
 * For adain- 1. download VGG19 weights from [here](https://s3-us-west-2.amazonaws.com/wengaoye/vgg19_normalised.npz) and save it in your main directory.   
