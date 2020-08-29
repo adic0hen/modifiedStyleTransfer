@@ -25,8 +25,9 @@ def applyStyleTransfer(request):
     styleDir = "--style_imgs_dir ./"
     contentData = "--content_img {}".format(ContentPhoto.objects.last().cover.path)
     styleData = "--style_imgs {}".format(StylePhoto.objects.last().cover.path)
+    iterations = "--max_iterations 5"
     print("APPLYING STYLE TRANSFER THROUGH THE WEBSITE")
-    styleTransferRequest = neural_style.DefaultRequest(contentDir=contentDir, styleDir=styleDir, contentData=contentData, styleData=styleData)
+    styleTransferRequest = neural_style.DefaultRequest(contentDir=contentDir, styleDir=styleDir, contentData=contentData, styleData=styleData, iterations=iterations)
     args = styleTransferRequest.getRequestArgs()
     print(str(args))
     neural_style.runInternalWithArguments(args)

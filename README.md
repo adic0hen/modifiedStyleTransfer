@@ -13,7 +13,12 @@ To work with this project, you will need to download weights to work with the se
 That's it, you are good to go!
 
 Now, to run the website:
-* Open terminal in "django_project" directory and run "python manage.py runserver", access the website in the ip address that django will supply.
+* Open terminal in "django_project" directory and run "python manage.py runserver", access the website in the ip address that django will supply.  
+
+Related mentions:
+* Original neural-style project - https://github.com/cysmith/neural-style-tf  
+* Adain - https://github.com/elleryqueenhomels/arbitrary_style_transfer  
+
 
 
 

@@ -5,11 +5,11 @@ from .models import StylePhoto
 class AddContentPhotoForm(forms.ModelForm):
     class Meta:
         model = ContentPhoto
-        fields = ['title', 'cover']
+        fields = ['cover']
 
 
 
 class AddStylePhotoForm(forms.ModelForm):
     class Meta:
         model = StylePhoto
-        fields = ['title', 'cover']
+        fields = ['cover']

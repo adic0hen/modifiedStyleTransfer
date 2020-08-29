@@ -901,38 +901,12 @@ def render_single_image():
         print('Single image elapsed time: {}'.format(tock - tick))
 
 
-def render_video():
-    for frame in range(args.start_frame, args.end_frame + 1):
-        with tf.Graph().as_default():
-            print('\n---- RENDERING VIDEO FRAME: {}/{} ----\n'.format(frame, args.end_frame))
-            if frame == 1:
-                content_frame = get_content_frame(frame)
-                style_imgs = get_style_images(content_frame)
-                init_img = get_init_image(args.first_frame_type, content_frame, style_imgs, frame)
-                args.max_iterations = args.first_frame_iterations
-                tick = time.time()
-                stylize(content_frame, style_imgs, init_img, frame)
-                tock = time.time()
-                print('Frame {} elapsed time: {}'.format(frame, tock - tick))
-            else:
-                content_frame = get_content_frame(frame)
-                style_imgs = get_style_images(content_frame)
-                init_img = get_init_image(args.init_frame_type, content_frame, style_imgs, frame)
-                args.max_iterations = args.frame_iterations
-                tick = time.time()
-                stylize(content_frame, style_imgs, init_img, frame)
-                tock = time.time()
-                print('Frame {} elapsed time: {}'.format(frame, tock - tick))
-
 
 #######################experiments ########################################
 def originalMain(commandLine):
     global args
     args = parse_args(commandLine)
-    if args.video:
-        render_video()
-    else:
-        render_single_image()
+    render_single_image()
 
 
 class DefaultRequest():
