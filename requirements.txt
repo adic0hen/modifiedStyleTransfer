@@ -4,7 +4,7 @@ astor==0.8.1
 cachetools==3.1.1
 certifi==2020.6.20
 chardet==3.0.4
-Django==3.0.3
+Django==3.1.6
 gast==0.2.2
 google-auth==1.9.0
 google-auth-oauthlib==0.4.1
